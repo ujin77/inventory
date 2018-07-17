@@ -1,0 +1,5 @@
+table        { border: 1px solid gray; border-collapse: collapse;
+               margin: 4px 0; }
+td, th       { border: 1px solid gray; padding: 2px 5px;
+               text-align: left; }
+th           { background: #eee; font-weight: normal; }

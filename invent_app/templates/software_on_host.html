@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<table>
+    <h1>Installed software on - {{ title }}</h1>
+    <tr>
+        <th>DisplayName</th>
+        <th>DisplayVersion</th>
+        <th>Publisher</th>
+        <th>InstallDate</th>
+        <th>Update</th>
+    </tr>
+    {% for result in data %}
+    <tr>
+        {% for elem in result %}
+        <td>{{elem}}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+
+</table>
+</body>
+</html>

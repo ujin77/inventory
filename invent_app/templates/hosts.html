@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<table>
+    <tr>
+        <th>Hostname</th>
+        <th>pub_date</th>
+        <th>CsDNSHostName</th>
+        <th>CsDomain</th>
+        <th>WindowsProductName</th>
+        <th>WindowsInstallationType</th>
+        <th>WindowsEditionId/th>
+        <th>WindowsCurrentVersion</th>
+        <th>WindowsBuildLabEx</th>
+    </tr>
+    {% for info in data %}
+    <tr>
+        <td><a href='/software/{{ info[0] }}'>{{info[0]}}</a></td>
+        <td>{% if info[1] != None %}{{ info[1] }}{% endif %}</td>
+        <td>{% if info[2] != None %}{{ info[2] }}{% endif %}</td>
+        <td>{% if info[3] != None %}{{ info[3] }}{% endif %}</td>
+        <td>{% if info[4] != None %}{{ info[4] }}{% endif %}</td>
+        <td>{% if info[5] != None %}{{ info[5] }}{% endif %}</td>
+        <td>{% if info[6] != None %}{{ info[6] }}{% endif %}</td>
+        <td>{% if info[7] != None %}{{ info[7] }}{% endif %}</td>
+        <td>{% if info[8] != None %}{{ info[8] }}{% endif %}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+</body>
+</html>
