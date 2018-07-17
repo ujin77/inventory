@@ -10,6 +10,9 @@ from flask import render_template
 def default_val(data):
     return data if data else ''
 
+def default_date(data):
+    return "{:%Y-%m-%d %H:%M}".format(data) if data else ''
+
 
 @app.route('/')
 @app.route('/index')
@@ -20,7 +23,7 @@ def hosts():
     for host in query_hosts:
         data.append([
             host.hostname,
-            host.pub_date,
+            default_date(host.pub_date),
             host.CsDNSHostName,
             host.CsDomain,
             host.WindowsProductName,

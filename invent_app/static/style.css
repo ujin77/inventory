@@ -1,4 +1,7 @@
-table        { border: 1px solid gray; border-collapse: collapse;
+body    { background: #a3c2c2; }
+table        {
+    background: #FFFFFF;
+    border: 1px solid gray; border-collapse: collapse;
                margin: 4px 0; }
 td, th       { border: 1px solid gray; padding: 2px 5px;
                text-align: left; }
