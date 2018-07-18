@@ -22,8 +22,8 @@ def hosts():
     data = []
     for host in query_hosts:
         data.append([
-            host.hostname,
-            default_date(host.pub_date),
+            host.Hostname,
+            default_date(host.Pub_date),
             host.CsDNSHostName,
             host.CsDomain,
             host.WindowsProductName,

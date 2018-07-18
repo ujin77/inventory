@@ -12,8 +12,8 @@ RE_UPD = re.compile(r'^(Security )?(Definition )?Update for')
 class Host(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
-    hostname = db.Column(db.String(64), index=True, unique=True)
-    pub_date = db.Column(db.DateTime, nullable=False, default=datetime.now(), onupdate=datetime.now())
+    Hostname = db.Column(db.String(64), index=True, unique=True)
+    Pub_date = db.Column(db.DateTime, nullable=False, default=datetime.now(), onupdate=datetime.now())
     CsDNSHostName = db.Column(db.String(250))
     CsDomain = db.Column(db.String(250))
     WindowsProductName = db.Column(db.String(250))
@@ -22,21 +22,21 @@ class Host(db.Model):
     WindowsCurrentVersion = db.Column(db.String(250))
     WindowsBuildLabEx = db.Column(db.String(250))
 
-    def __init__(self, hostname=None, data=None):
+    def __init__(self, Hostname=None, data=None):
         super(Host, self).__init__()
         if data:
             self.from_json(data)
         else:
-            self.hostname = hostname
+            self.Hostname = Hostname
 
     def __repr__(self):
-        return '<Host %r>' % self.hostname
+        return '<Host %r>' % self.Hostname
 
     def __str__(self):
         return '<Host %r>' % self.hostname
 
     def from_json(self, data):
-        if data.has_key('hostname'): self.hostname = data['hostname']
+        if data.has_key('Hostname'): self.Hostname = data['Hostname']
         if data.has_key('CsDNSHostName'): self.CsDNSHostName = data['CsDNSHostName']
         if data.has_key('CsDomain'): self.CsDomain = data['CsDomain']
         if data.has_key('WindowsProductName'): self.WindowsProductName = data['WindowsProductName']
@@ -48,25 +48,22 @@ class Host(db.Model):
 
 class Soft(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    hostname = db.Column(db.String(64), index=True, unique=False)
-    DisplayName = db.Column(db.String(250))
-    DisplayVersion = db.Column(db.String(64))
-    Publisher = db.Column(db.String(64))
-    InstallDate = db.Column(db.DateTime)
+    Hostname = db.Column(db.String(64), index=True, unique=False)
+    Name = db.Column(db.String(250))
+    Version = db.Column(db.String(64))
+    Vendor = db.Column(db.String(64))
     IsUpdate = db.Column(db.Boolean())
 
-    def __init__(self, hostname, data):
+    def __init__(self, Hostname, data):
         super(Soft, self).__init__()
-        self.hostname = hostname
-        if data.has_key('DisplayName'):
-            self.DisplayName = data['DisplayName']
-            if RE_UPD.match(data['DisplayName']):
+        self.Hostname = Hostname
+        if data.has_key('Name'):
+            self.Name = data['Name']
+            if RE_UPD.match(data['Name']):
                 self.IsUpdate = True
             else:
                 self.IsUpdate = False
-
-        if data.has_key('DisplayVersion'): self.DisplayVersion = data['DisplayVersion']
-        if data.has_key('Publisher'): self.Publisher = data['Publisher']
-        if data.has_key('InstallDate'):
-            if data['InstallDate']:
-                self.InstallDate = datetime.strptime(data['InstallDate'], '%Y%m%d')
+        if data.has_key('Version'):
+            self.Version = data['Version']
+        if data.has_key('Vendor'):
+            self.Vendor = data['Vendor']

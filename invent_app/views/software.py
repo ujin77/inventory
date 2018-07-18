@@ -16,27 +16,26 @@ def default_date(data):
 
 @app.route('/software')
 def all_software():
-    software = db.session.query(Soft.DisplayName,
-                                label('Count', func.count(Soft.DisplayName))).group_by(Soft.DisplayName).all()
+    software = db.session.query(Soft.Name,
+                                label('Count', func.count(Soft.Name))).group_by(Soft.Name).all()
     data = []
     for soft in software:
         data.append([
-            soft.DisplayName,
-            default_val(soft.Count),
+            soft.Name,
+            soft.Count
         ])
     return render_template('software.html', title='Software', data=data)
 
 
 @app.route('/software/<host>')
 def software(host):
-    software = Soft.query.filter_by(hostname=host).order_by(Soft.DisplayName)
+    software = Soft.query.filter_by(Hostname=host).order_by(Soft.Name)
     data = []
     for soft in software:
         data.append([
-            soft.DisplayName,
-            default_val(soft.DisplayVersion),
-            soft.Publisher,
-            default_date(soft.InstallDate),
+            soft.Name,
+            default_val(soft.Version),
+            soft.Vendor,
             'Update' if soft.IsUpdate else ''
         ])
     return render_template('software_on_host.html', title=host, data=data)
