@@ -11,8 +11,7 @@ app = Flask(__name__)
 app.config.from_object(Configuration)
 db = SQLAlchemy(app)
 
-from invent_app.views import index, hosts, software
-from invent_app.views import rest
+from invent_app.views import rest, routes
 from invent_app.models import Host, Soft
 
 db.create_all()

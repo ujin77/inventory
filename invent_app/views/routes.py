@@ -1,19 +1,20 @@
+#!/usr/bin/python
 # -*- coding: utf-8
 #
 from invent_app import app, db
-from invent_app.models import Soft
+from invent_app.models import Host, Soft
 from flask import render_template
 from sqlalchemy import func
 from sqlalchemy.sql import label
 import urllib2
 
 
-def default_val(data):
-    return data if data else ''
-
-
-def default_date(data):
-    return data.date() if data else ''
+@app.route('/')
+@app.route('/index')
+@app.route('/hosts')
+def hosts():
+    data = Host.query.order_by(Host.Hostname).all()
+    return render_template('index.html', title='Hosts', data=data)
 
 
 @app.route('/all_software')
