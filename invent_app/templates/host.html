@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+{% include "menu.html" %}
+<div>
+<h2>Host: {{ title }}</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Version</th>
+        <th>Vendor</th>
+        <th>Update</th>
+    </tr>
+    {% for soft in data %}
+    <tr {% if soft.IsUpdate ==True %}class="update"{% endif %}>
+        <td><a href="{{url_for('software', s_name=soft.Name|urlencode )}}">{{soft.Name}}</a></td>
+        <td>{% if soft.Version != None %}{{soft.Version}}{% endif %}</td>
+        <td>{% if soft.Vendor != None %}{{soft.Vendor}}{% endif %}</td>
+        <td>{% if soft.IsUpdate ==True %}Update{% endif %}</td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+<br>
+{% include "menu.html" %}
+</body>
+</html>

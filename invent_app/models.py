@@ -21,6 +21,7 @@ class Host(db.Model):
     WindowsEditionId = db.Column(db.String(250))
     WindowsCurrentVersion = db.Column(db.String(250))
     WindowsBuildLabEx = db.Column(db.String(250))
+    PowerShell = db.Column(db.String(64))
 
     def __init__(self, Hostname=None, data=None):
         super(Host, self).__init__()
@@ -44,6 +45,9 @@ class Host(db.Model):
         if data.has_key('WindowsEditionId'): self.WindowsEditionId = data['WindowsEditionId']
         if data.has_key('WindowsCurrentVersion'): self.WindowsCurrentVersion = data['WindowsCurrentVersion']
         if data.has_key('WindowsBuildLabEx'): self.WindowsBuildLabEx = data['WindowsBuildLabEx']
+        if data.has_key('PowerShell'):
+            ps = data['PowerShell']
+            self.PowerShell = '{}.{}.{}'.format(ps['Major'], ps['Minor'], ps['Build'])
 
 
 class Soft(db.Model):

@@ -13,7 +13,7 @@ def create_task():
     if not request.json:
         abort(400)
     # print json.dumps(request.json, indent=2, ensure_ascii=False)
-    print request.json['Hostname']
+    # print request.json['Hostname']
     host = Host.query.filter_by(Hostname=request.json['Hostname']).first()
     if host:
         host.Pub_date = datetime.now()

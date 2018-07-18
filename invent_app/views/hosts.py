@@ -18,19 +18,6 @@ def default_date(data):
 @app.route('/index')
 @app.route('/hosts')
 def hosts():
-    query_hosts = Host.query.all()
-    data = []
-    for host in query_hosts:
-        data.append([
-            host.Hostname,
-            default_date(host.Pub_date),
-            host.CsDNSHostName,
-            host.CsDomain,
-            host.WindowsProductName,
-            host.WindowsInstallationType,
-            host.WindowsEditionId,
-            host.WindowsCurrentVersion,
-            host.WindowsBuildLabEx
-        ])
-    return render_template('hosts.html', title='Hosts', data=data)
+    data = Host.query.all()
+    return render_template('index.html', title='Hosts', data=data)
 

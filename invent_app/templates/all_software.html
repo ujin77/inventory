@@ -9,11 +9,18 @@
 {% include "menu.html" %}
 <div>
 <h2>{{ title }}</h2>
-<div class="block">
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Count</th>
+    </tr>
     {% for soft in data %}
-        [&nbsp;<a href="{{url_for('host', h_name=soft.Hostname)}}">{{soft.Hostname}}</a>&nbsp;]
+    <tr {% if soft.IsUpdate ==True %}class="update"{% endif %}>
+        <td><a href="{{url_for('software', s_name=soft.Name|urlencode )}}">{{soft.Name}}</a></td>
+        <td>{{soft.Count}}</td>
+    </tr>
     {% endfor %}
-</div>
+</table>
 </div>
 <br>
 {% include "menu.html" %}
