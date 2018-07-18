@@ -18,6 +18,6 @@ def default_date(data):
 @app.route('/index')
 @app.route('/hosts')
 def hosts():
-    data = Host.query.all()
+    data = Host.query.order_by(Host.Hostname).all()
     return render_template('index.html', title='Hosts', data=data)
 
