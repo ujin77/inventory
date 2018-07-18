@@ -32,4 +32,4 @@ def software(s_name):
 @app.route('/host/<h_name>')
 def host(h_name):
     data = Soft.query.filter_by(Hostname=h_name).order_by(Soft.Name)
-    return render_template('host.html', title=host, data=data)
+    return render_template('host.html', title=h_name, data=data)

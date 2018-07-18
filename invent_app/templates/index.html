@@ -24,7 +24,7 @@
     {% for host in data %}
     <tr>
         <td><a href="{{url_for('host',h_name=host.Hostname)}}">{{host.Hostname}}</a></td>
-        <td>{% if host.Pub_date != None                %}{{ host.Pub_date }}{% endif %}</td>
+        <td>{% if host.Pub_date != None                %}{{ host.Pub_date.strftime('%Y-%m-%d %H:%M') }}{% endif %}</td>
         <td>{% if host.CsDNSHostName != None           %}{{ host.CsDNSHostName }}{% endif %}{% if host.CsDomain != None %}.{{ host.CsDomain }}{% endif %}</td>
         <td>{% if host.WindowsProductName != None      %}{{ host.WindowsProductName }}{% endif %}</td>
         <td>{% if host.WindowsInstallationType != None %}{{ host.WindowsInstallationType }}{% endif %}</td>
