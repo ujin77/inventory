@@ -1,4 +1,4 @@
-# inventory application
+# Light inventory web application
 
 ## Ubuntu apache
 
