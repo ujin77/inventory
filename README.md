@@ -1,5 +1,10 @@
 # Light inventory web application
 
+## Install 
+pip install Flask
+pip install Flask_SQLAlchemy
+pip install Flask_Excel
+
 ## Ubuntu apache
 
 ### mod-wsgi
