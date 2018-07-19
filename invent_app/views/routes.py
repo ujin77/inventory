@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8
 #
-from invent_app import app, db
+from invent_app import app, db, excel
 from invent_app.models import Host, Soft
 from flask import render_template
 from sqlalchemy import func
@@ -34,3 +34,10 @@ def software(s_name):
 def host(h_name):
     data = Soft.query.filter_by(Hostname=h_name).order_by(Soft.Name)
     return render_template('host.html', title=h_name, data=data)
+
+
+@app.route('/inventory.csv', methods=['GET'])
+def export_csv():
+    data = db.session.query(Soft.Hostname, Soft.Name, Soft.Version, Soft.Vendor).order_by(Soft.Hostname, Soft.Name).all()
+    column_names = ['Hostname', 'Name', 'Version', 'Vendor']
+    return excel.make_response_from_query_sets(data, column_names, "csv")
