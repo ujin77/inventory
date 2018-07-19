@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
 </head>
-<body>
+<body onload="HideUpdates();">
 {% include "menu.html" %}
 <div>
 <h2>{{ title }}</h2>
+        <button id="hideButton" onclick="HideUpdates()">Hide updates</button><br><br>
 <table>
     <tr>
         <th>Name</th>

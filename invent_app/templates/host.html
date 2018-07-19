@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
 </head>
-<body>
+<body onload="HideUpdates();">
 {% include "menu.html" %}
 <div>
 <h2>Host: {{ title }}</h2>
+    <button id="hideButton" onclick="HideUpdates()">Hide updates</button><br><br>
 <table>
     <tr>
         <th>Name</th>
         <th>Version</th>
         <th>Vendor</th>
-        <th>Update</th>
     </tr>
     {% for soft in data %}
     <tr {% if soft.IsUpdate ==True %}class="update"{% endif %}>
         <td><a href="{{url_for('software', s_name=soft.Name|urlencode )}}">{{soft.Name}}</a></td>
         <td>{% if soft.Version != None %}{{soft.Version}}{% endif %}</td>
         <td>{% if soft.Vendor != None %}{{soft.Vendor}}{% endif %}</td>
-        <td>{% if soft.IsUpdate ==True %}Update{% endif %}</td>
     </tr>
     {% endfor %}
 </table>
