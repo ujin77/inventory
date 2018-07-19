@@ -9,14 +9,17 @@ function SetDisplay(data){
 function HideUpdates(){
     SetDisplay('none');
     var btn = document.getElementById("hideButton");
-    btn.innerText = "Show Updates";
-    btn.onclick = ShowUpdates;
-
+    if ( btn ) {
+        btn.innerText = "Show Updates";
+        btn.onclick = ShowUpdates;
+    }
 }
 
 function ShowUpdates(){
     SetDisplay('');
     var btn = document.getElementById("hideButton");
-    btn.innerText = "Hide Updates";
-    btn.onclick = HideUpdates;
+    if ( btn ) {
+        btn.innerText = "Hide Updates";
+        btn.onclick = HideUpdates;
+    }
 }

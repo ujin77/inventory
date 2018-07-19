@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <script src="{{ url_for('static', filename='main.js') }}"></script>
-</head>
-<body onload="HideUpdates();">
-{% include "menu.html" %}
-<div>
-<h2>{{ title }}</h2>
-        <button id="hideButton" onclick="HideUpdates()">Hide updates</button><br><br>
+{% extends "layout.html" %}
+{% block body %}
+<div><button id="hideButton" onclick="HideUpdates()">Hide updates</button></div>
+<br>
 <table>
     <tr>
         <th>Name</th>
@@ -23,8 +14,4 @@
     </tr>
     {% endfor %}
 </table>
-</div>
-<br>
-{% include "menu.html" %}
-</body>
-</html>
+{% endblock %}
