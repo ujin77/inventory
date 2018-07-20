@@ -1,8 +1,12 @@
 {% extends "layout.html" %}
 {% block body %}
+<div>
 <div class="block">
+    <ul>
     {% for soft in data %}
-        [&nbsp;<a href="{{url_for('host', h_name=soft.Hostname)}}">{{soft.Hostname}}</a>&nbsp;]
+        <li><a href="{{url_for('host', h_name=soft.Hostname)}}">{{soft.Hostname}}</a></li>
     {% endfor %}
+    </ul>
+</div>
 </div>
 {% endblock %}

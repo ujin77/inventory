@@ -19,7 +19,11 @@ def hosts():
 
 @app.route('/all_software')
 def all_software():
-    data = db.session.query(Soft.Name, label('Count', func.count(Soft.Name)), Soft.IsUpdate ).group_by(Soft.Name).all()
+    data = db.session.query(Soft.Name,
+                            Soft.Version,
+                            Soft.Vendor,
+                            label('Count', func.count(Soft.Name)),
+                            Soft.IsUpdate).group_by(Soft.Name).all()
     return render_template('all_software.html', title='Software', data=data)
 
 
@@ -36,8 +40,28 @@ def host(h_name):
     return render_template('host.html', title=h_name, data=data)
 
 
-@app.route('/inventory.csv', methods=['GET'])
-def export_csv():
+@app.route('/inventory_software.csv', methods=['GET'])
+def export_software():
     data = db.session.query(Soft.Hostname, Soft.Name, Soft.Version, Soft.Vendor).order_by(Soft.Hostname, Soft.Name).all()
     column_names = ['Hostname', 'Name', 'Version', 'Vendor']
+    return excel.make_response_from_query_sets(data, column_names, "csv")
+
+@app.route('/inventory_hosts.csv', methods=['GET'])
+def export_hosts():
+    data = db.session.query(Host.Hostname,
+                            Host.WindowsProductName,
+                            Host.WindowsInstallationType,
+                            Host.WindowsEditionId,
+                            Host.WindowsCurrentVersion,
+                            Host.WindowsBuildLabEx,
+                            Host.PowerShell
+    ).order_by(Host.Hostname).all()
+    column_names = ['Hostname',
+                    'WindowsProductName',
+                    'WindowsInstallationType',
+                    'WindowsEditionId',
+                    'WindowsCurrentVersion',
+                    'WindowsBuildLabEx',
+                    'PowerShell'
+                    ]
     return excel.make_response_from_query_sets(data, column_names, "csv")

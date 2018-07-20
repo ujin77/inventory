@@ -1,17 +1,23 @@
 {% extends "layout.html" %}
+{% block menu_top %}[&nbsp;<a href="{{url_for('export_software')}}">csv</a>&nbsp;]{% endblock %}
 {% block body %}
 <div><button id="hideButton" onclick="HideUpdates()">Hide updates</button></div>
 <br>
 <table>
     <tr>
         <th>Name</th>
+        <th>Version</th>
+        <th>Vendor</th>
         <th>Count</th>
     </tr>
     {% for soft in data %}
     <tr {% if soft.IsUpdate ==True %}class="update"{% endif %}>
         <td><a href="{{url_for('software', s_name=soft.Name|urlencode )}}">{{soft.Name}}</a></td>
+        <td>{% if soft.Version != None %}{{soft.Version}}{% endif %}</td>
+        <td>{% if soft.Vendor != None %}{{soft.Vendor}}{% endif %}</td>
         <td>{{soft.Count}}</td>
     </tr>
     {% endfor %}
 </table>
 {% endblock %}
+{% block menu_bottom %}[&nbsp;<a href="{{url_for('export_software')}}">csv</a>&nbsp;]{% endblock %}

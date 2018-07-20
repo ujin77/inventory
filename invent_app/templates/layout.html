@@ -7,10 +7,18 @@
     <script src="{{ url_for('static', filename='main.js') }}"></script>
 </head>
 <body onload="HideUpdates();">
-{% include "menu.html" %}
+<div>
+    [&nbsp;<a href="/">Home</a>&nbsp;]
+    [&nbsp;<a href="{{url_for('all_software')}}">All software</a>&nbsp;]
+    {% block menu_top %}{% endblock %}
+</div>
 <div><h2>{{ title }}</h2></div>
 {% block body %}{% endblock %}
 <br>
-{% include "menu.html" %}
+<div>
+    [&nbsp;<a href="/">Home</a>&nbsp;]
+    [&nbsp;<a href="{{url_for('all_software')}}">All software</a>&nbsp;]
+    {% block menu_bottom %}{% endblock %}
+</div>
 </body>
 </html>

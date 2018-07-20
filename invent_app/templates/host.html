@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% block menu_top %}{% endblock %}
 {% block body %}
 <div><button id="hideButton" onclick="HideUpdates()">Hide updates</button></div>
 <br>
@@ -17,3 +18,4 @@
     {% endfor %}
 </table>
 {% endblock %}
+{% block menu_bottom %}{% endblock %}
