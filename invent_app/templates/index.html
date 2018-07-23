@@ -3,14 +3,14 @@
 {% block body %}
 <table>
     <tr>
-        <th>Hostname</th>
-        <th>ProductName</th>
-        <th>InstallationType</th>
-        <th>Edition</th>
-        <th>Version</th>
-        <th>Build</th>
-        <th>PowerShell</th>
-        <th>Date report</th>
+        <th><a href="{{url_for('hosts',order_by='Hostname', order=order)}}">Hostname</a></th>
+        <th><a href="{{url_for('hosts',order_by='WindowsProductName', order=order)}}">ProductName</a></th>
+        <th><a href="{{url_for('hosts',order_by='WindowsInstallationType', order=order)}}">InstallationType</a></th>
+        <th><a href="{{url_for('hosts',order_by='WindowsEditionId', order=order)}}">Edition</a></th>
+        <th><a href="{{url_for('hosts',order_by='WindowsCurrentVersion', order=order)}}">Version</a></th>
+        <th><a href="{{url_for('hosts',order_by='WindowsBuildLabEx', order=order)}}">Build</a></th>
+        <th><a href="{{url_for('hosts',order_by='PowerShell', order=order)}}">PowerShell</a></th>
+        <th><a href="{{url_for('hosts',order_by='Pub_date', order=order)}}">Date report</a></th>
     </tr>
     {% for host in data %}
     <tr>

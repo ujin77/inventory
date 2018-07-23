@@ -5,16 +5,26 @@
 <br>
 <table>
     <tr>
-        <th>Name</th>
+        <th><a href="{{url_for('all_software', order_by='Name', order=order, vendor=vendor)}}">Name</a></th>
         <th>Version</th>
-        <th>Vendor</th>
-        <th>Count</th>
+        <th>
+        {% if vendor != None %}
+            <a href="{{url_for('all_software', order_by='Vendor', order=order)}}">Vendor</a>
+        {% else %}
+            <a href="{{url_for('all_software', order_by='Vendor', order=order, vendor=vendor)}}">Vendor</a>
+        {% endif %}
+        </th>
+
+        <th><a href="{{url_for('all_software',order_by='Count', order=order, vendor=vendor)}}">Count</a></th>
     </tr>
     {% for soft in data %}
     <tr {% if soft.IsUpdate ==True %}class="update"{% endif %}>
         <td><a href="{{url_for('software', name=soft.Name|escape )}}">{{soft.Name}}</a></td>
         <td>{% if soft.Version != None %}{{soft.Version}}{% endif %}</td>
-        <td>{% if soft.Vendor != None %}{{soft.Vendor}}{% endif %}</td>
+        <td>{% if soft.Vendor != None %}
+            <a href="{{url_for('all_software', vendor=soft.Vendor)}}">
+                {{soft.Vendor}}</a>
+            {% endif %}</td>
         <td>{{soft.Count}}</td>
     </tr>
     {% endfor %}
