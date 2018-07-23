@@ -23,6 +23,10 @@ th {
     background: #eff;
 }
 
+tbody tr:hover {
+    background: #efe;
+   }
+
 div {
     text-align: center;
     -webkit-align-content: center;

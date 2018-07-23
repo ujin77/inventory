@@ -1,12 +1,19 @@
 {% extends "layout.html" %}
 {% block body %}
-<div>
-<div class="block">
-    <ul>
+<br>
+<table>
+    <tr>
+        <th {% if data.count()>1 %} colspan="2" {% endif %}>{{ title }}</th>
+    </tr>
+    <tr><td>
     {% for soft in data %}
-        <li><a href="{{url_for('host', h_name=soft.Hostname)}}">{{soft.Hostname}}</a></li>
+    <a href="{{url_for('host', h_name=soft.Hostname)}}">{{soft.Hostname}}</a>
+        {% if loop.index == (loop.length + 1)//2 and loop.length > 2 %}
+        </td><td>
+        {% else %}
+        <br>
+        {% endif %}
     {% endfor %}
-    </ul>
-</div>
-</div>
+    </td></tr>
+</table>
 {% endblock %}
