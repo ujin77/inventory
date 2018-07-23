@@ -53,7 +53,8 @@ def export_hosts():
                             Host.WindowsEditionId,
                             Host.WindowsCurrentVersion,
                             Host.WindowsBuildLabEx,
-                            Host.PowerShell
+                            Host.PowerShell,
+                            Host.Pub_date
     ).order_by(Host.Hostname).all()
     column_names = ['Hostname',
                     'WindowsProductName',
@@ -61,6 +62,7 @@ def export_hosts():
                     'WindowsEditionId',
                     'WindowsCurrentVersion',
                     'WindowsBuildLabEx',
-                    'PowerShell'
+                    'PowerShell',
+                    'Pub_date'
                     ]
     return excel.make_response_from_query_sets(data, column_names, "csv")
