@@ -27,9 +27,8 @@ def all_software():
     return render_template('all_software.html', title='Software', data=data)
 
 
-@app.route('/software/<s_name>')
-def software(s_name):
-    name = urllib2.unquote(s_name)
+@app.route('/software/<name>')
+def software(name):
     data = Soft.query.filter_by(Name=name).group_by(Soft.Hostname).order_by(Soft.Hostname)
     return render_template('software.html', title=name, data=data)
 
